@@ -162,8 +162,22 @@
     }
 
     @media (max-width: 768px) {
-      .photo-section { gap: 50px; flex-direction: column; }
-      /* стрелки и подписи оставляем видимыми и на мобильных */
+      .photo-section {
+        gap: 70px;
+        flex-direction: column;
+      }
+      /* на мобильных разводим стрелки по разной высоте
+         левая над фото жениха, правая — над фото невесты */
+      .curl-arrow {
+        top: -80px;
+      }
+      .curl-left {
+        left: 10px;
+      }
+      .curl-right {
+        right: 10px;
+        top: 120px;
+      }
       .polaroid { width: 200px; }
       .polaroid img { height: 240px; }
     }
