@@ -163,20 +163,21 @@
 
     @media (max-width: 768px) {
       .photo-section {
-        gap: 70px;
+        gap: 80px;
         flex-direction: column;
       }
-      /* на мобильных разводим стрелки по разной высоте
-         левая над фото жениха, правая — над фото невесты */
+      /* мобильная версия:
+         левая стрелка чуть выше (Жених),
+         правая сильно ниже и правее (Невеста) */
       .curl-arrow {
-        top: -80px;
+        top: -110px;          /* ЖЕНИХ – стрелка выше */
       }
       .curl-left {
-        left: 10px;
+        left: 5px;
       }
       .curl-right {
-        right: 10px;
-        top: 120px;
+        right: -10px;         /* НЕВЕСТА – правее */
+        top: 250px;           /* и сильно ниже */
       }
       .polaroid { width: 200px; }
       .polaroid img { height: 240px; }
