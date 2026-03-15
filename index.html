@@ -232,13 +232,13 @@
     }
 
     .map-placeholder {
-      background: #f5f3f0;
-      height: 220px;
+      background: transparent;
+      height: 300px;           /* карта выше */
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 30px 0;
-      border-radius: 12px;
+      margin: 40px 0 50px;     /* опустили немного ниже текста */
+      border-radius: 0;
       color: #777;
       font-style: italic;
     }
@@ -330,9 +330,13 @@
 
 <div class="container">
 
+  <h1 style="font-size: 1.6em; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 140px;">
+    Наше свадебное приглашение
+  </h1>
+
   <div class="photo-section" data-aos="fade-up" data-aos-delay="100">
-    <div class="polaroid">
-      <img src="https://drive.google.com/uc?export=view&id=1ouNopZioL4s95JQfeIvjr3fdRS8nQCiX" alt="Жених Евгений">
+    <div class="polaroid" onclick="showFact('groom')" style="cursor:pointer;">
+      <img src="я.jpg" alt="Жених Евгений">
       <span>Евгений</span>
     </div>
 
@@ -362,11 +366,15 @@
       </svg>
     </div>
 
-    <div class="polaroid bride">
-      <img src="https://drive.google.com/uc?export=view&id=1LbWz2Rsi4DaFpWzju0gYGitkoq5hN7Nl" alt="Невеста Екатерина">
+    <div class="polaroid bride" onclick="showFact('bride')" style="cursor:pointer;">
+      <img src="к.jpg" alt="Невеста Екатерина">
       <span>Екатерина</span>
     </div>
   </div>
+
+  <p style="font-style: italic; margin: 10px 0 25px; color: #7a6a60;">
+    Нажмите на детские фото, чтобы узнать интересный факт.
+  </p>
 
   <section data-aos="fade-up" data-aos-delay="200" style="border:none">
     <h2>Да-да, это мы!</h2>
@@ -386,24 +394,26 @@
     <h2>Локация</h2>
     <p>16:00<br>
     Турбаза «Дубовая Роща»<br>
-    шатёр «По любви»<br>
-    Волгоград, ул. Пушкина, 3</p>
+    Шатёр «Это по любви»<br>
+    Волгоградская область, городское поселение Краснослободск, посёлок Вторая Пятилетка</p>
     <div class="map-placeholder">
-      [Место для Яндекс.Карты или Google Maps]
+      <img src="карта.jpg" alt="Схема проезда"
+           style="max-width: 100%; max-height: 100%; height: auto; border-radius: 10px;">
     </div>
   </section>
 
   <section data-aos="fade-up" data-aos-delay="500">
     <h2>Дресс-код</h2>
-    <p>Нежные бежевые тона.<br>Допускается немного коричневатого — особенно в виде цветов.</p>
+    <p>Мы будем рады, если в ваших образах появятся такие оттенки:<br>
+    от мягкого бежевого до тёплого коричневого.</p>
     
     <div class="palette">
-      <!-- от светлого бежевого к мягкому светло-коричневому -->
-      <div class="color-circle" style="background: #f2e4cf;"></div>
-      <div class="color-circle" style="background: #ead5b8;"></div>
-      <div class="color-circle" style="background: #dec3a0;"></div>
-      <div class="color-circle" style="background: #cda988;"></div>
-      <div class="color-circle" style="background: #b58d6b;"></div>
+      <!-- мягкий градиент от светлого бежевого к шоколадному -->
+      <div class="color-circle" style="background: #f0ddc6;"></div>  <!-- светлый бежевый -->
+      <div class="color-circle" style="background: #e0c3a0;"></div>  <!-- бежевый чуть темнее -->
+      <div class="color-circle" style="background: #cda988;"></div>  <!-- тёплый бежево-коричневый -->
+      <div class="color-circle" style="background: #b58d6b;"></div>  <!-- светлый коричневый -->
+      <div class="color-circle" style="background: #7b4a2a;"></div>  <!-- шоколадный -->
     </div>
   </section>
 
@@ -415,23 +425,53 @@
 
 </div>
 
-<!-- Модальное окно -->
+<!-- Модальное окно подтверждения участия -->
 <div id="modal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="document.getElementById('modal').style.display='none'">×</span>
     <h2>Спасибо, что хочешь быть с нами! ❤️</h2>
     <p style="margin: 25px 0; font-size: 1.1em;">
       Позвони или напиши любому из нас:<br><br>
-      <strong>Евгений:</strong> +7 (XXX) XXX-XX-XX<br>
-      <strong>Екатерина:</strong> +7 (YYY) YYY-YY-YY<br><br>
+      <strong>Евгений:</strong>
+      <a href="tel:+7XXXXXXXXXX" style="color: inherit; text-decoration: underline;">
+        +7 (962) 760-99-12
+      </a><br>
+      <strong>Екатерина:</strong>
+      <a href="tel:+7YYYYYYYYYY" style="color: inherit; text-decoration: underline;">
+        +7 (969) 658-92-13
+      </a><br><br>
       WhatsApp / Telegram — тоже отлично
     </p>
+  </div>
+</div>
+
+<!-- Модальное окно с интересным фактом -->
+<div id="fact-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="document.getElementById('fact-modal').style.display='none'">×</span>
+    <h2 id="fact-title">Интересный факт</h2>
+    <p id="fact-text" style="margin: 25px 0; font-size: 1.1em;"></p>
   </div>
 </div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init({ duration: 900, once: true });
+
+  function showFact(who) {
+    var title = document.getElementById('fact-title');
+    var text  = document.getElementById('fact-text');
+
+    if (who === 'groom') {
+      title.textContent = 'Интересный факт про жениха';
+      text.textContent  = 'В детстве Евгений мог часами собирать конструктор и до сих пор обожает придумывать, как всё устроено внутри.';
+    } else if (who === 'bride') {
+      title.textContent = 'Интересный факт про невесту';
+      text.textContent  = 'Екатерина помнит дни рождения почти всех друзей и всегда выбирает для всех самые тёплые подарки.';
+    }
+
+    document.getElementById('fact-modal').style.display = 'flex';
+  }
 </script>
 
 </body>
