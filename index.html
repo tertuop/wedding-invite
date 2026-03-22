@@ -49,6 +49,13 @@
       pointer-events: none;
       z-index: -2;
       filter: blur(4px) brightness(1.02) contrast(1.02) sepia(0.18);
+      animation: subtleFloat 20s ease-in-out infinite;
+    }
+
+    @keyframes subtleFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(-10px, -5px) scale(1.02); }
+      66% { transform: translate(10px, -3px) scale(1.01); }
     }
 
     body::after {
@@ -231,18 +238,6 @@
       border-top: 1px solid var(--border-light);
     }
 
-    .map-placeholder {
-      background: transparent;
-      height: 300px;           /* карта выше */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 40px 0 50px;     /* опустили немного ниже текста */
-      border-radius: 0;
-      color: #777;
-      font-style: italic;
-    }
-
     .btn {
       background: var(--accent-color);
       color: white;
@@ -271,6 +266,32 @@
       flex-wrap: wrap;
     }
 
+    .wishlist-item {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wishlist-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #f0ddc6, #7b4a2a);
+    }
+
+    .wishlist-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+
     .color-circle {
       width: 70px;
       height: 70px;
@@ -283,6 +304,30 @@
     .color-circle:hover {
       transform: scale(1.15);
       box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 36px;
+      cursor: pointer;
+      color: #aaa;
+    }
+
+    .close:hover { color: var(--accent-color); }
+
+    .map-container {
+      background: transparent;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 40px 0;
+      border-radius: 0;
+      color: #777;
+      font-style: italic;
+      position: relative;
     }
 
     .modal {
@@ -307,22 +352,66 @@
       position: relative;
     }
 
-    .close {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 36px;
-      cursor: pointer;
-      color: #aaa;
-    }
-
-    .close:hover { color: var(--accent-color); }
-
     @media (max-width: 480px) {
       .polaroid { width: 180px; }
       .polaroid img { height: 220px; }
       h1, h2 { font-size: 2em; }
       .btn { padding: 14px 40px; font-size: 1.1em; }
+    }
+
+    /* Анимации и микровзаимодействия */
+    @keyframes markerPulse {
+      0% { transform: scale(1); box-shadow: 0 6px 20px rgba(139,26,26,0.4); }
+      25% { transform: scale(1.15); box-shadow: 0 8px 25px rgba(139,26,26,0.6); }
+      50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(139,26,26,0.4); }
+      75% { transform: scale(1.1); box-shadow: 0 7px 22px rgba(139,26,26,0.5); }
+      100% { transform: scale(1); box-shadow: 0 6px 20px rgba(139,26,26,0.4); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 4px 15px rgba(139,26,26,0.3); }
+      50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(139,26,26,0.5); }
+      100% { transform: scale(1); box-shadow: 0 4px 15px rgba(139,26,26,0.3); }
+    }
+
+    .map-marker:hover .map-marker div:first-child {
+      transform: scale(1.1);
+    }
+
+    .map-marker:hover .map-marker div:last-child {
+      opacity: 1 !important;
+    }
+
+    .wishlist-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+
+    .color-circle:hover {
+      transform: scale(1.15);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    }
+
+    /* Параллакс эффект */
+    .parallax-element {
+      transition: transform 0.1s ease-out;
+    }
+
+    /* Улучшенная адаптивность */
+    @media (max-width: 768px) {
+      .container { padding: 40px 15px; }
+      .wishlist-grid { grid-template-columns: 1fr; gap: 15px; }
+      .wishlist-item { padding: 20px; }
+      .map-marker div:first-child { width: 35px; height: 35px; font-size: 14px; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 30px 10px; }
+      h1 { font-size: 1.8em; }
+      h2 { font-size: 1.6em; }
+      .polaroid { width: 160px; }
+      .polaroid img { height: 200px; }
+      .calendar-grid { max-width: 280px; font-size: 1em; }
     }
   </style>
 </head>
@@ -392,14 +481,51 @@
 
   <section data-aos="fade-up" data-aos-delay="400">
     <h2>Локация</h2>
-    <p>16:00<br>
-    Турбаза «Дубовая Роща»<br>
-    Шатёр «Это по любви»<br>
-    Волгоградская область, городское поселение Краснослободск, посёлок Вторая Пятилетка</p>
-    <div class="map-placeholder">
-      <img src="карта.jpg" alt="Схема проезда"
-           style="max-width: 100%; max-height: 100%; height: auto; border-radius: 10px;">
+    <div style="margin: 30px 0;">
+      <p style="font-size: 1.1em; margin-bottom: 20px;">
+        <strong style="color: var(--accent-color);">12:00 — ЗАГС</strong><br>
+        Советского района по адресу:<br>
+        Университетский проспект, 64
+      </p>
+      
+      <p style="font-size: 1.1em; margin-bottom: 20px;">
+        <strong style="color: var(--accent-color);">16:00 — Сбор гостей</strong><br>
+        Турбаза «Дубовая Роща»<br>
+        Шатёр «Это по любви»<br>
+        Волгоградская область,<br>
+        городское поселение Краснослободск,<br>
+        посёлок Вторая Пятилетка
+      </p>
     </div>
+    <div class="map-container" style="position: relative; height: 400px; margin: 40px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+      <img src="карта.jpg" alt="Схема проезда" 
+           style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+      
+      <!-- Интерактивные маркеры -->
+      <div class="map-marker" style="position: absolute; top: 75%; left: 8%; cursor: pointer;" 
+           onclick="showLocationInfo('zags', event)">
+        <div style="background: var(--accent-color); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 14px; box-shadow: 0 6px 20px rgba(139,26,26,0.4); animation: markerPulse 1.5s ease-in-out infinite;">
+          1
+        </div>
+      </div>
+      
+      <div class="map-marker" style="position: absolute; top: 65%; left: 62%; cursor: pointer;" 
+           onclick="showLocationInfo('base', event)">
+        <div style="background: var(--accent-color); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 14px; box-shadow: 0 6px 20px rgba(139,26,26,0.4); animation: markerPulse 1.5s ease-in-out infinite; animation-delay: 0.75s;">
+          2
+        </div>
+      </div>
+    </div>
+    
+    <!-- Информационные окна для маркеров -->
+    <div id="location-info" style="display: none; position: absolute; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 15px 40px rgba(0,0,0,0.25); z-index: 1001; max-width: 350px; text-align: center;">
+      <h3 id="location-title" style="color: var(--accent-color); margin-bottom: 10px; font-size: 1.1em; font-family: 'Roboto', sans-serif; font-weight: 400;"></h3>
+      <p id="location-text" style="margin: 0; font-size: 0.95em; line-height: 1.5; font-family: 'Roboto', sans-serif;"></p>
+    </div>
+    
+    <p style="text-align: center; margin-top: 20px; font-style: italic; color: #7a6a60; font-size: 0.9em;">
+      💡 Нажмите на маркеры, чтобы увидеть подробную информацию о местах
+    </p>
   </section>
 
   <section data-aos="fade-up" data-aos-delay="500">
@@ -409,11 +535,27 @@
     
     <div class="palette">
       <!-- мягкий градиент от светлого бежевого к шоколадному -->
-      <div class="color-circle" style="background: #f0ddc6;"></div>  <!-- светлый бежевый -->
-      <div class="color-circle" style="background: #e0c3a0;"></div>  <!-- бежевый чуть темнее -->
+      <div class="color-circle" style="background: #dcc8b0;"></div>  <!-- еще темнее светлый бежевый -->
+      <!-- бежевый чуть темнее -->
       <div class="color-circle" style="background: #cda988;"></div>  <!-- тёплый бежево-коричневый -->
       <div class="color-circle" style="background: #b58d6b;"></div>  <!-- светлый коричневый -->
       <div class="color-circle" style="background: #7b4a2a;"></div>  <!-- шоколадный -->
+    </div>
+  </section>
+
+  <section data-aos="fade-up" data-aos-delay="550">
+    <h2>Вишлист</h2>
+    <p style="margin-bottom: 30px; font-style: italic;">Мы будем очень рады видеть вас на нашем празднике! Ваше присутствие — это главный подарок для нас.</p>
+    
+    <div style="text-align: center; margin: 40px 0;">
+      <p style="font-size: 1.05em; line-height: 1.6; color: #2d2d2d; max-width: 400px; margin: 0 auto;">
+        Мы уже много чего накопили для нашего дома,<br>
+        поэтому будем благодарны за финансовый подарок,<br>
+        который поможет нам в обустройстве семейного гнёздышка.
+      </p>
+      <p style="margin-top: 30px; font-style: italic; color: #7a6a60; font-size: 0.95em;">
+        Но самое важное — это ваши тёплые слова и улыбки в этот день! ❤️
+      </p>
     </div>
   </section>
 
@@ -458,6 +600,65 @@
 <script>
   AOS.init({ duration: 900, once: true });
 
+  // Интерактивная карта
+  function showLocationInfo(location, event) {
+    var modal = document.getElementById('location-info');
+    var title = document.getElementById('location-title');
+    var text = document.getElementById('location-text');
+    
+    if (location === 'zags') {
+      title.textContent = 'ЗАГС Советского района';
+      text.innerHTML = '<strong>12:00</strong><br>Университетский проспект, 64<br><br>Регистрация брака в торжественной обстановке';
+    } else if (location === 'base') {
+      title.textContent = 'Турбаза «Дубовая Роща»';
+      text.innerHTML = '<strong>16:00</strong><br>Шатёр «Это по любви»<br>Волгоградская область,<br>посёлок Вторая Пятилетка<br><br>Праздничный ужин и развлечения';
+    }
+    
+    // Позиционируем окно по центру карты
+    var mapContainer = event.currentTarget.closest('.map-container');
+    var containerRect = mapContainer.getBoundingClientRect();
+    
+    // Центр карты
+    var left = (containerRect.width / 2) - 175; // 175px - половина ширины окна
+    var top = (containerRect.height / 2) - 60; // 60px - половина высоты окна
+    
+    // Устанавливаем позицию относительно контейнера карты
+    modal.style.position = 'absolute';
+    modal.style.left = left + 'px';
+    modal.style.top = top + 'px';
+    modal.style.display = 'block';
+    
+    // Добавляем окно в контейнер карты, если его там еще нет
+    if (!mapContainer.contains(modal)) {
+      mapContainer.appendChild(modal);
+    }
+  }
+  
+  function closeLocationInfo() {
+    document.getElementById('location-info').style.display = 'none';
+  }
+
+  // Закрытие окна по клику в любом месте экрана
+  document.addEventListener('click', function(event) {
+    var modal = document.getElementById('location-info');
+    var isMarker = event.target.closest('.map-marker');
+    
+    if (!isMarker && modal.style.display === 'block') {
+      closeLocationInfo();
+    }
+  });
+
+  // Параллакс эффект при прокрутке
+  window.addEventListener('scroll', function() {
+    const scrolled = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('.parallax-element');
+    
+    parallaxElements.forEach(function(element) {
+      const speed = element.dataset.speed || 0.5;
+      element.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+  });
+
   function showFact(who) {
     var title = document.getElementById('fact-title');
     var text  = document.getElementById('fact-text');
@@ -472,6 +673,38 @@
 
     document.getElementById('fact-modal').style.display = 'flex';
   }
+
+  // Закрытие модальных окон по клику вне их
+  window.onclick = function(event) {
+    const locationModal = document.getElementById('location-info');
+    const factModal = document.getElementById('fact-modal');
+    const confirmModal = document.getElementById('modal');
+    
+    if (event.target === locationModal) {
+      locationModal.style.display = 'none';
+    }
+    if (event.target === factModal) {
+      factModal.style.display = 'none';
+    }
+    if (event.target === confirmModal) {
+      confirmModal.style.display = 'none';
+    }
+  }
+
+  // Анимация при наведении на элементы вишлиста
+  document.addEventListener('DOMContentLoaded', function() {
+    const wishlistItems = document.querySelectorAll('.wishlist-item');
+    
+    wishlistItems.forEach(function(item) {
+      item.addEventListener('click', function() {
+        // Добавляем пульсацию при клике
+        this.style.animation = 'pulse 0.6s ease-in-out';
+        setTimeout(() => {
+          this.style.animation = '';
+        }, 600);
+      });
+    });
+  });
 </script>
 
 </body>
