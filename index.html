@@ -361,7 +361,8 @@
       h2 { font-size: 1.4em; }
       .btn { padding: 14px 40px; font-size: 1.1em; }
       .photo-section { gap: 40px; }
-      .map-container { height: 300px; margin: 20px 0; }
+      .map-container { height: 250px !important; margin: 20px 0 !important; }
+      .map-container img { object-fit: cover; }
       .color-circle { width: 50px; height: 50px; }
       .palette { gap: 15px; }
       section { margin-bottom: 50px; }
@@ -458,7 +459,7 @@
           </marker>
         </defs>
         <!-- изгиб сверху к левому полароиду (Жених) – конец чуть ниже и правее -->
-        <path class="main" d="M 150 25 Q 115 40 95 70 Q 85 90 82 118" marker-end="url(#arrowHeadLeft)" />
+        <path class="main" d="M 150 25 Q 115 40 95 70 Q 85 90 92 118" marker-end="url(#arrowHeadLeft)" />
       </svg>
     </div>
 
@@ -470,8 +471,8 @@
             <path d="M 0 0 L 3 3 L 0 6" fill="none" stroke="#8b1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
           </marker>
         </defs>
-        <!-- изгиб к правому полароиду (Невеста) – конец чуть ниже -->
-        <path class="main" d="M 50 25 Q 85 40 105 70 Q 115 90 108 118" marker-end="url(#arrowHeadRight)" />
+        <!-- изгиб к правому полароиду (Невеста) – конец выше и левее -->
+        <path class="main" d="M 50 25 Q 85 40 95 60 Q 100 70 95 80" marker-end="url(#arrowHeadRight)" />
       </svg>
     </div>
 
