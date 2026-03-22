@@ -354,57 +354,17 @@
 
     @media (max-width: 480px) {
       .container { padding: 30px 15px; }
-      .polaroid { width: 120px; }
-      .polaroid img { height: 160px; }
-      .polaroid span { font-size: 20px; }
-      h1 { font-size: 1.2em; margin-bottom: 60px; }
-      h2 { font-size: 1.3em; }
-      .btn { padding: 12px 25px; font-size: 0.9em; width: 100%; max-width: 250px; }
-      .photo-section { 
-        gap: 60px; 
-        flex-direction: column; 
-        align-items: center;
-        position: relative;
-      }
-      .curl-arrow { 
-        transform: scale(0.6) rotate(90deg); 
-        position: absolute;
-        left: 50%;
-        transform-origin: center;
-      }
-      .curl-left { 
-        top: 160px; 
-        margin-left: -30px;
-      }
-      .curl-right { 
-        top: 340px; 
-        margin-left: -30px;
-      }
-      .map-container { 
-        height: 250px; 
-        margin: 20px 0; 
-        border-radius: 10px;
-        overflow: hidden;
-        position: relative;
-        width: 100%;
-      }
-      .map-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 10px;
-      }
-      .map-marker {
-        position: absolute !important;
-      }
-      .map-marker .marker-number {
-        width: 30px !important;
-        height: 30px !important;
-        font-size: 12px !important;
-      }
-      .color-circle { width: 45px; height: 45px; }
-      .palette { gap: 12px; }
-      section { margin-bottom: 40px; }
+      .polaroid { width: 160px; }
+      .polaroid img { height: 200px; }
+      .polaroid span { font-size: 24px; }
+      h1 { font-size: 1.3em; margin-bottom: 80px; }
+      h2 { font-size: 1.4em; }
+      .btn { padding: 14px 40px; font-size: 1.1em; }
+      .photo-section { gap: 40px; }
+      .map-container { height: 300px; margin: 20px 0; }
+      .color-circle { width: 50px; height: 50px; }
+      .palette { gap: 15px; }
+      section { margin-bottom: 50px; }
     }
 
     @media (max-width: 768px) {
@@ -562,14 +522,14 @@
            style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
       
       <!-- Интерактивные маркеры -->
-      <div class="map-marker" style="position: absolute; top: 70%; left: 15%; cursor: pointer;" 
+      <div class="map-marker" style="position: absolute; top: 75%; left: 8%; cursor: pointer;" 
            onclick="showLocationInfo('zags', event)">
         <div class="marker-number" style="background: var(--accent-color); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 14px; box-shadow: 0 6px 20px rgba(139,26,26,0.4); animation: markerPulse 1.5s ease-in-out infinite;">
           1
         </div>
       </div>
       
-      <div class="map-marker" style="position: absolute; top: 60%; left: 70%; cursor: pointer;" 
+      <div class="map-marker" style="position: absolute; top: 65%; left: 62%; cursor: pointer;" 
            onclick="showLocationInfo('base', event)">
         <div class="marker-number" style="background: var(--accent-color); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 14px; box-shadow: 0 6px 20px rgba(139,26,26,0.4); animation: markerPulse 1.5s ease-in-out infinite; animation-delay: 0.75s;">
           2
