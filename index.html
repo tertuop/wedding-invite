@@ -518,35 +518,17 @@
         посёлок Вторая Пятилетка
       </p>
     </div>
-    <div class="map-container" style="position: relative; height: 400px; margin: 40px 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-      <img src="карта.jpg" alt="Схема проезда" 
-           style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
-      
-      <!-- Интерактивные маркеры -->
-      <div class="map-marker" style="position: absolute; top: 75%; left: 8%; cursor: pointer;" 
-           onclick="showLocationInfo('zags', event)">
-        <div class="marker-number" style="background: var(--accent-color); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 14px; box-shadow: 0 6px 20px rgba(139,26,26,0.4); animation: markerPulse 1.5s ease-in-out infinite;">
-          1
-        </div>
-      </div>
-      
-      <div class="map-marker" style="position: absolute; top: 65%; left: 62%; cursor: pointer;" 
-           onclick="showLocationInfo('base', event)">
-        <div class="marker-number" style="background: var(--accent-color); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 14px; box-shadow: 0 6px 20px rgba(139,26,26,0.4); animation: markerPulse 1.5s ease-in-out infinite; animation-delay: 0.75s;">
-          2
-        </div>
-      </div>
+    <div style="text-align: center; margin-top: 30px;">
+      <a
+        href="https://yandex.ru/maps/?rtext=~48.615629,44.473655"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn"
+        style="display: inline-block; text-decoration: none;"
+      >
+        ПОСТРОИТЬ МАРШРУТ
+      </a>
     </div>
-    
-    <!-- Информационные окна для маркеров -->
-    <div id="location-info" style="display: none; position: absolute; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 1001; max-width: 280px; text-align: center;">
-      <h3 id="location-title" style="color: var(--accent-color); margin-bottom: 10px; font-size: 1.1em; font-family: 'Roboto', sans-serif; font-weight: 400;"></h3>
-      <p id="location-text" style="margin: 0; font-size: 0.95em; line-height: 1.5; font-family: 'Roboto', sans-serif;"></p>
-    </div>
-    
-    <p style="text-align: center; margin-top: 20px; font-style: italic; color: #7a6a60; font-size: 0.9em;">
-      💡 Нажмите на маркеры, чтобы увидеть подробную информацию о местах
-    </p>
   </section>
 
   <section data-aos="fade-up" data-aos-delay="500">
@@ -621,54 +603,6 @@
 <script>
   AOS.init({ duration: 900, once: true });
 
-  // Интерактивная карта
-  function showLocationInfo(location, event) {
-    var modal = document.getElementById('location-info');
-    var title = document.getElementById('location-title');
-    var text = document.getElementById('location-text');
-    
-    if (location === 'zags') {
-      title.textContent = 'ЗАГС Советского района';
-      text.innerHTML = '<strong>12:00</strong><br>Университетский проспект, 64<br><br>Регистрация брака в торжественной обстановке';
-    } else if (location === 'base') {
-      title.textContent = 'Турбаза «Дубовая Роща»';
-      text.innerHTML = '<strong>16:00</strong><br>Шатёр «Это по любви»<br>Волгоградская область,<br>посёлок Вторая Пятилетка<br><br>Праздничный ужин и развлечения';
-    }
-    
-    // Позиционируем окно по центру карты
-    var mapContainer = event.currentTarget.closest('.map-container');
-    var containerRect = mapContainer.getBoundingClientRect();
-    
-    // Центр карты
-    var left = (containerRect.width / 2) - 175; // 175px - половина ширины окна
-    var top = (containerRect.height / 2) - 60; // 60px - половина высоты окна
-    
-    // Устанавливаем позицию относительно контейнера карты
-    modal.style.position = 'absolute';
-    modal.style.left = left + 'px';
-    modal.style.top = top + 'px';
-    modal.style.display = 'block';
-    
-    // Добавляем окно в контейнер карты, если его там еще нет
-    if (!mapContainer.contains(modal)) {
-      mapContainer.appendChild(modal);
-    }
-  }
-  
-  function closeLocationInfo() {
-    document.getElementById('location-info').style.display = 'none';
-  }
-
-  // Закрытие окна по клику в любом месте экрана
-  document.addEventListener('click', function(event) {
-    var modal = document.getElementById('location-info');
-    var isMarker = event.target.closest('.map-marker');
-    
-    if (!isMarker && modal.style.display === 'block') {
-      closeLocationInfo();
-    }
-  });
-
   // Параллакс эффект при прокрутке
   window.addEventListener('scroll', function() {
     const scrolled = window.pageYOffset;
@@ -697,13 +631,9 @@
 
   // Закрытие модальных окон по клику вне их
   window.onclick = function(event) {
-    const locationModal = document.getElementById('location-info');
     const factModal = document.getElementById('fact-modal');
     const confirmModal = document.getElementById('modal');
-    
-    if (event.target === locationModal) {
-      locationModal.style.display = 'none';
-    }
+
     if (event.target === factModal) {
       factModal.style.display = 'none';
     }
