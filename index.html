@@ -243,7 +243,7 @@
     }
 
     .btn {
-      background: var(--accent-color);
+      background: #8e3939;
       color: white;
       padding: 16px 50px;
       border: none;
@@ -252,14 +252,24 @@
       font-size: 1.2em;
       letter-spacing: 2px;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(139,26,26,0.2);
+      box-shadow: 0 4px 15px rgba(142,57,57,0.28);
       transition: all 0.3s ease;
     }
 
     .btn:hover {
-      background: #6d1414;
+      background: #7d2d2d;
       transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(139,26,26,0.3);
+      box-shadow: 0 8px 25px rgba(142,57,57,0.38);
+    }
+
+    .route-btn {
+      background: #8e3939;
+      box-shadow: 0 4px 15px rgba(142,57,57,0.28);
+    }
+
+    .route-btn:hover {
+      background: #7d2d2d;
+      box-shadow: 0 8px 25px rgba(142,57,57,0.38);
     }
 
     .palette {
@@ -512,7 +522,7 @@
         Советского района по адресу:<br>
         Университетский проспект, 64
       </p>
-      
+
       <p style="font-size: 1.1em; margin-bottom: 20px;">
         <strong style="color: var(--accent-color);">15:00 — Сбор гостей</strong><br>
         Турбаза «Дубовая Роща»<br>
@@ -521,13 +531,17 @@
         городское поселение Краснослободск,<br>
         посёлок Вторая Пятилетка
       </p>
+
+      <p style="font-size: 1.1em; margin-bottom: 20px;">
+        <strong style="color: var(--accent-color);">15:30 — Выездная регистрация</strong>
+      </p>
     </div>
     <div style="text-align: center; margin-top: 30px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
       <a
         href="https://yandex.ru/maps/?mode=routes&rtext=~48.664985,44.547814"
         target="_blank"
         rel="noopener noreferrer"
-        class="btn"
+        class="btn route-btn"
         style="display: inline-block; text-decoration: none;"
       >
         ПОСТРОИТЬ МАРШРУТ
