@@ -184,7 +184,11 @@
       }
       .curl-right {
         right: 6px;           /* НЕВЕСТА – ближе к правому краю фото */
-        top: 286px;           /* опустили еще на 20px */
+        top: 281px;           /* подняли на 5px */
+      }
+      .curl-right::before {
+        right: 8px;           /* подпись правее */
+        top: 4px;             /* подпись ниже */
       }
       .polaroid { width: 200px; }
       .polaroid img { height: 240px; }
@@ -472,7 +476,7 @@
           </marker>
         </defs>
         <!-- изгиб к правому полароиду (Невеста) – длинная стрелка как у жениха -->
-        <path class="main" d="M 50 25 Q 85 40 105 65 Q 115 85 110 105" marker-end="url(#arrowHeadRight)" />
+        <path class="main" d="M 62 30 Q 88 42 102 60 Q 110 76 106 90" marker-end="url(#arrowHeadRight)" />
       </svg>
     </div>
 
