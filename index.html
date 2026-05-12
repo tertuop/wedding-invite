@@ -262,16 +262,6 @@
       box-shadow: 0 8px 25px rgba(139,26,26,0.3);
     }
 
-    .route-btn {
-      background: var(--accent-color);
-      box-shadow: 0 4px 15px rgba(139,26,26,0.2);
-    }
-
-    .route-btn:hover {
-      background: #6d1414;
-      box-shadow: 0 8px 25px rgba(139,26,26,0.3);
-    }
-
     .palette {
       display: flex;
       justify-content: center;
@@ -524,6 +514,10 @@
       </p>
 
       <p style="font-size: 1.1em; margin-bottom: 20px;">
+        <strong style="color: var(--accent-color);">15:30 — Выездная регистрация</strong>
+      </p>
+      
+      <p style="font-size: 1.1em; margin-bottom: 20px;">
         <strong style="color: var(--accent-color);">15:00 — Сбор гостей</strong><br>
         Турбаза «Дубовая Роща»<br>
         Шатёр «Это по любви»<br>
@@ -531,17 +525,13 @@
         городское поселение Краснослободск,<br>
         посёлок Вторая Пятилетка
       </p>
-
-      <p style="font-size: 1.1em; margin-bottom: 20px;">
-        <strong style="color: var(--accent-color);">15:30 — Выездная регистрация</strong>
-      </p>
     </div>
     <div style="text-align: center; margin-top: 30px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
       <a
         href="https://yandex.ru/maps/?mode=routes&rtext=~48.664985,44.547814"
         target="_blank"
         rel="noopener noreferrer"
-        class="btn route-btn"
+        class="btn"
         style="display: inline-block; text-decoration: none;"
       >
         ПОСТРОИТЬ МАРШРУТ
@@ -570,12 +560,12 @@
     
     <div style="text-align: center; margin: 40px 0;">
       <p style="font-size: 1.05em; line-height: 1.6; color: #2d2d2d; max-width: 400px; margin: 0 auto;">
-        Мы уже много чего накопили для нашего дома,<br>
-        поэтому будем благодарны за финансовый подарок,<br>
-        который поможет нам в обустройстве семейного гнёздышка.
+        Мы будем рады разделить с вами этот важный&nbsp;день. <br>
+        Если вы захотите сделать нам подарок, нам будет особенно приятно ваше участие в создании нашего семейного бюджета.<br>
+ 
       </p>
       <p style="margin-top: 30px; font-style: italic; color: #7a6a60; font-size: 0.95em;">
-        Но самое важное — это ваши тёплые слова и улыбки в этот день! ❤️
+        Но самое важное — это ваши тёплые слова и улыбки в этот&nbsp;день! ❤️
       </p>
     </div>
   </section>
@@ -638,10 +628,10 @@
 
     if (who === 'groom') {
       title.textContent = 'Интересный факт про жениха';
-      text.textContent  = 'В детстве Евгений мог часами собирать конструктор и до сих пор обожает придумывать, как всё устроено внутри.';
+      text.textContent  = 'В детстве я никогда не рассказывал родителям, если сильно падал или ушибался — обычно они узнавали об этом спустя месяцы, а иногда и годы.';
     } else if (who === 'bride') {
       title.textContent = 'Интересный факт про невесту';
-      text.textContent  = 'Екатерина помнит дни рождения почти всех друзей и всегда выбирает для всех самые тёплые подарки.';
+      text.textContent  = 'В детстве я была очень любопытной — мне всегда было интересно, как всё устроено, поэтому я постоянно задавала вопросы и исследовала всё вокруг.';
     }
 
     document.getElementById('fact-modal').style.display = 'flex';
@@ -677,4 +667,15 @@
 </script>
 
 </body>
-</html>
+</html>и клике
+        this.style.animation = 'pulse 0.6s ease-in-out';
+        setTimeout(() => {
+          this.style.animation = '';
+        }, 600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>/html>
