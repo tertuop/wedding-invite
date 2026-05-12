@@ -270,6 +270,23 @@
       flex-wrap: wrap;
     }
 
+    .palette-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      min-width: 88px;
+    }
+
+    .palette-label {
+      font-size: 0.82em;
+      color: #5c524c;
+      letter-spacing: 0.02em;
+      text-align: center;
+      line-height: 1.25;
+      max-width: 100px;
+    }
+
     .wishlist-item {
       background: white;
       padding: 25px;
@@ -369,6 +386,8 @@
       .map-container img { object-fit: cover; }
       .color-circle { width: 50px; height: 50px; }
       .palette { gap: 15px; }
+      .palette-item { min-width: 72px; gap: 8px; }
+      .palette-label { font-size: 0.75em; max-width: 86px; }
       section { margin-bottom: 50px; }
     }
 
@@ -382,6 +401,7 @@
       .photo-section { gap: 50px; }
       .map-container { height: 350px; }
       .color-circle { width: 60px; height: 60px; }
+      .palette-label { font-size: 0.78em; }
     }
 
     /* Анимации и микровзаимодействия */
@@ -525,6 +545,10 @@
       <p style="font-size: 1.1em; margin-bottom: 20px;">
         <strong style="color: var(--accent-color);">15:30 — Выездная регистрация</strong>
       </p>
+
+      <p style="font-size: 1.1em; margin-bottom: 20px;">
+        <strong style="color: var(--accent-color);">16:00 — Банкет</strong>
+      </p>
     </div>
     <div style="text-align: center; margin-top: 30px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
       <a
@@ -545,12 +569,22 @@
     от мягкого бежевого до тёплого коричневого.</p>
     
     <div class="palette">
-      <!-- мягкий градиент от светлого бежевого к шоколадному -->
-      <div class="color-circle" style="background: #dcc8b0;"></div>  <!-- еще темнее светлый бежевый -->
-      <!-- бежевый чуть темнее -->
-      <div class="color-circle" style="background: #cda988;"></div>  <!-- тёплый бежево-коричневый -->
-      <div class="color-circle" style="background: #b58d6b;"></div>  <!-- светлый коричневый -->
-      <div class="color-circle" style="background: #7b4a2a;"></div>  <!-- шоколадный -->
+      <div class="palette-item">
+        <div class="color-circle" style="background: #dcc8b0;"></div>
+        <span class="palette-label">Бежевый</span>
+      </div>
+      <div class="palette-item">
+        <div class="color-circle" style="background: #cda988;"></div>
+        <span class="palette-label">Тёплый бежевый</span>
+      </div>
+      <div class="palette-item">
+        <div class="color-circle" style="background: #b58d6b;"></div>
+        <span class="palette-label">Светло-коричневый</span>
+      </div>
+      <div class="palette-item">
+        <div class="color-circle" style="background: #7b4a2a;"></div>
+        <span class="palette-label">Шоколадный</span>
+      </div>
     </div>
   </section>
 
@@ -667,15 +701,4 @@
 </script>
 
 </body>
-</html>и клике
-        this.style.animation = 'pulse 0.6s ease-in-out';
-        setTimeout(() => {
-          this.style.animation = '';
-        }, 600);
-      });
-    });
-  });
-</script>
-
-</body>
-</html>/html>
+</html>
